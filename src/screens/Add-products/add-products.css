@@ -1,0 +1,93 @@
+/* Apply full page centering */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eaeaea; /* Optional: subtle background */
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Container styles */
+.add-product-container {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #f4f4f4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.add-product-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Success message */
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* Form styling */
+.add-product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+/* Input and textarea styling */
+.add-product-form input[type="text"],
+.add-product-form input[type="number"],
+.add-product-form input[type="file"],
+.add-product-form textarea,
+.add-product-form button {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  display: block;
+}
+
+/* Textarea specific */
+.add-product-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Image preview */
+.preview-img {
+  width: 100%;
+  max-width: 400px;
+  max-height: 250px;
+  object-fit: contain;
+  margin: 10px auto 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  display: block;
+}
+
+/* Submit button */
+.add-product-form button {
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-product-form button:hover {
+  background-color: #218838;
+}
