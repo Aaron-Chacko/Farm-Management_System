@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmConnect - Farm Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Enhanced CSS */
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #3d8b40;
+            --secondary: #8BC34A;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --text: #333;
+            --text-light: #6c757d;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a i {
+            margin-right: 8px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: 50px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* Forms */
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* Products */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .social-links {
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 20px;
+            }
+
+            nav ul li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .hero {
+                height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo" id="home-logo">
+                <img src="https://via.placeholder.com/40" alt="FarmConnect Logo">
+                <span class="logo-text">FarmConnect</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" id="home-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" id="products-link"><i class="fas fa-shopping-basket"></i> Products</a></li>
+                    <li><a href="#" id="login-link"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                    <li><a href="#" id="register-link"><i class="fas fa-user-plus"></i> Register</a></li>
+                    <li class="hidden" id="dashboard-li"><a href="#" id="dashboard-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li class="hidden" id="logout-li"><a href="#" id="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    <li><a href="#" id="cart-link"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="hero-section">
+            <div class="hero-content">
+                <h1>Fresh Produce Direct From Farm</h1>
+                <p>Connect directly with local farmers and buy fresh, organic produce at fair prices</p>
+                <a href="#" class="btn" id="hero-products-btn">Browse Products</a>
+            </div>
+        </section>
+
+        <!-- Login Section -->
+        <section id="login-section" class="form-container hidden">
+            <h2 class="text-center">Login to Your Account</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <p id="login-error" class="error-message"></p>
+            </form>
+        </section>
+
+        <!-- Registration Section -->
+        <section id="register-section" class="form-container hidden">
+            <h2 class="text-center">Create an Account</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-username">Username</label>
+                    <input type="text" id="register-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-phone">Phone Number</label>
+                    <input type="tel" id="register-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-type">I am a:</label>
+                    <select id="register-type" required>
+                        <option value="farmer">Farmer</option>
+                        <option value="customer">Customer</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <p id="register-error" class="error-message"></p>
+            </form>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products-section" class="hidden">
+            <h2>Fresh Farm Products</h2>
+            <div class="products-grid" id="products-container">
+                <!-- Products will be loaded here dynamically -->
+            </div>
+        </section>
+
+        <!-- Product Detail Section -->
+        <section id="product-detail-section" class="hidden">
+            <button class="btn btn-outline" id="back-to-products"><i class="fas fa-arrow-left"></i> Back to Products</button>
+            <div class="product-detail-container" id="product-detail-container">
+                <!-- Product details will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Farmer Dashboard Section -->
+        <section id="dashboard-section" class="hidden">
+            <h2>Farmer Dashboard</h2>
+            <div class="dashboard-actions">
+                <button class="btn" id="add-product-btn"><i class="fas fa-plus"></i> Add New Product</button>
+                <button class="btn" id="view-orders-btn"><i class="fas fa-clipboard-list"></i> View Orders</button>
+            </div>
+
+            <!-- Add Product Form -->
+            <div id="add-product-form" class="form-container hidden">
+                <h3 class="text-center">Add New Product</h3>
+                <form id="product-form">
+                    <div class="form-group">
+                        <label for="product-name">Product Name</label>
+                        <input type="text" id="product-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Price (₹)</label>
+                        <input type="number" id="product-price" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-quantity">Quantity</label>
+                        <input type="number" id="product-quantity" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-description">Description</label>
+                        <textarea id="product-description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-image">Product Image</label>
+                        <input type="file" id="product-image" accept="image/*">
+                    </div>
+                    <button type="submit" class="btn">Add Product</button>
+                </form>
+            </div>
+
+            <!-- Farmer's Products -->
+            <h3>Your Products</h3>
+            <div class="products-grid" id="farmer-products">
+                <!-- Farmer's products will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Cart Section -->
+        <section id="cart-section" class="form-container hidden">
+            <h2 class="text-center">Your Shopping Cart</h2>
+            <div id="cart-items">
+                <!-- Cart items will be loaded here -->
+            </div>
+            <div id="cart-total" class="text-center">
+                <p class="product-price">Total: ₹<span id="total-amount">0.00</span></p>
+                <button class="btn" id="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2023 FarmConnect. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const sections = {
+            home: document.getElementById('hero-section'),
+            login: document.getElementById('login-section'),
+            register: document.getElementById('register-section'),
+            products: document.getElementById('products-section'),
+            productDetail: document.getElementById('product-detail-section'),
+            dashboard: document.getElementById('dashboard-section'),
+            cart: document.getElementById('cart-section')
+        };
+
+        const navLinks = {
+            home: document.getElementById('home-link'),
+            products: document.getElementById('products-link'),
+            login: document.getElementById('login-link'),
+            register: document.getElementById('register-link'),
+            dashboard: document.getElementById('dashboard-link'),
+            logout: document.getElementById('logout-link'),
+            cart: document.getElementById('cart-link')
+        };
+
+        const forms = {
+            login: document.getElementById('login-form'),
+            register: document.getElementById('register-form'),
+            product: document.getElementById('product-form')
+        };
+
+        const buttons = {
+            heroProducts: document.getElementById('hero-products-btn'),
+            backToProducts: document.getElementById('back-to-products'),
+            addProduct: document.getElementById('add-product-btn'),
+            viewOrders: document.getElementById('view-orders-btn'),
+            checkout: document.getElementById('checkout-btn')
+        };
+
+        // State management
+        let currentUser = null;
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let products = [];
+
+        // API Base URL
+        const API_BASE_URL = 'http://localhost:3000/api';
+
+        // Initialize the application
+        function init() {
+            // Event listeners for navigation
+            navLinks.home.addEventListener('click', (e) => {
+                e.preventDefault();
+                showSection('home');
+                });
+            }
+
+            navLinks.products.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadProducts();
+                showSection('products');
+            });
+
+            navLinks.login.addEventListener('click', (e) => {
+                e.preventDefault();
+                showSection('login');
+            });
